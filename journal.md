@@ -306,3 +306,18 @@ Created `workspace/README.md` as full marketing copy. Includes: hero section wit
 
 ## 2026-05-07T18:11:17.161Z — m5.t6
 Ran `tsc --noEmit` — zero type errors. All m5 changes (landing page, analytics.ts, README.md, messageFormatter improvements, Overpass retry) were already committed in prior task commits. Updated board.json to mark m5.t6 done and milestone m5 done. Updated spending.json with this task's cost entry.
+
+## 2026-05-07T18:18:52.002Z — m6.t1
+Fixed `workspace/public/index.html` landing page: replaced fake `https://beautybot.app/og-image.png` og:image with relative path `og-image.png`, and replaced fake `https://beautybot.app` og:url with the actual bot URL `https://t.me/Gigs_test_12343253_bot`. CTA buttons and inline `@Gigs_test_12343253_bot` references were already correct and unchanged.
+
+## 2026-05-07T18:19:43.823Z — m6.t2
+Added `📏 X.X km away` distance line to `formatSalonDetail` in `messageFormatter.ts`. The new line uses `salon.distance.toFixed(1)` and is inserted after the rating line, matching the same pattern already present in `formatSalonCard`. `tsc --noEmit` passes cleanly.
+
+## 2026-05-07T18:20:41.596Z — m6.t3
+Added a module-level `searchCache` Map to `salonSearch.ts` with 15-minute TTL. Cache key is `serviceType:lat.toFixed(3):lon.toFixed(3):budget` (rounding lat/lon to ~111m precision to allow nearby requests to share cache entries). Cache is checked after `resolveLocation` so GPS-based lookups also benefit. `tsc --noEmit` passes cleanly.
+
+## 2026-05-07T18:22:39.495Z — m6.t4
+Added `/feedback` command to `bot.ts`: blank `/feedback` shows usage hint; non-empty text calls new `logFeedback()` in `analytics.ts` which logs to console and appends JSON lines to `logs/feedback.jsonl`. Bot replies with a thank-you message. `tsc --noEmit` passes cleanly.
+
+## 2026-05-07T18:24:03.749Z — m6.t5
+Created `workspace/start.sh`: a bash process supervisor that sources `~/.agent-factory/credentials.env`, validates `TG_BOT_TOKEN`, then runs `npx tsx src/index.ts` in a `while true` loop — restarting automatically after any crash or clean exit with a 5-second backoff. Applied `chmod +x`. Updated `README.md` to document `./start.sh` as the recommended production start command and added it to the project structure tree.

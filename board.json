@@ -300,6 +300,91 @@
           "failure_log": []
         }
       ]
+    },
+    {
+      "id": "m6",
+      "title": "UX polish, caching & reliability",
+      "status": "in_progress",
+      "tasks": [
+        {
+          "id": "m6.t1",
+          "title": "Fix landing page: remove fake beautybot.app URLs, use actual bot URL (t.me/Gigs_test_12343253_bot) and relative paths for og:image",
+          "status": "done",
+          "priority": 1,
+          "notes": "Changed og:image from 'https://beautybot.app/og-image.png' to relative path 'og-image.png'. Changed og:url from 'https://beautybot.app' to 'https://t.me/Gigs_test_12343253_bot'. CTA buttons and inline bot references were already correct.",
+          "depends_on": [],
+          "created": "2026-05-08T00:00:00.000Z",
+          "completed": "2026-05-08T18:18:52.000Z",
+          "attempts": 1,
+          "max_attempts": 3,
+          "failure_log": []
+        },
+        {
+          "id": "m6.t2",
+          "title": "Show distance in salon detail view (formatSalonDetail): add '📏 X.X km away' line using salon.distance field",
+          "status": "done",
+          "priority": 2,
+          "notes": "Added `typeof salon.distance === 'number' ? '📏 X.X km away' : null` line to the lines array in formatSalonDetail, inserted after the rating line. tsc --noEmit passes cleanly.",
+          "depends_on": [],
+          "created": "2026-05-08T00:00:00.000Z",
+          "completed": "2026-05-08T18:19:43.000Z",
+          "attempts": 1,
+          "max_attempts": 3,
+          "failure_log": []
+        },
+        {
+          "id": "m6.t3",
+          "title": "Add in-memory search result cache in salonSearch.ts: cache findSalons results by (serviceType, lat, lon, budget) key with 15-min TTL; avoids redundant OSM + Nominatim calls",
+          "status": "done",
+          "priority": 3,
+          "notes": "Added module-level searchCache Map with 15-min TTL. Cache key rounds lat/lon to 3 decimal places (~111m) to allow nearby lookups to hit cache. Cache is checked after resolveLocation (so GPS skips Nominatim but shares cache with equivalent text lookups). makeCacheKey typed with BudgetLevel|null to match findSalons signature. tsc --noEmit passes cleanly.",
+          "depends_on": [],
+          "created": "2026-05-08T00:00:00.000Z",
+          "completed": "2026-05-08T18:23:00.000Z",
+          "attempts": 1,
+          "max_attempts": 3,
+          "failure_log": []
+        },
+        {
+          "id": "m6.t4",
+          "title": "Add /feedback command to bot.ts: let users type '/feedback <text>' which logs to analytics + console; reply with a thank-you message",
+          "status": "done",
+          "priority": 4,
+          "notes": "Added /feedback command handler in bot.ts after /share handler. Blank /feedback shows usage hint. Non-empty text calls new logFeedback() in analytics.ts which logs to console and appends to logs/feedback.jsonl. Replies with thank-you message. tsc --noEmit passes cleanly.",
+          "depends_on": [],
+          "created": "2026-05-08T00:00:00.000Z",
+          "completed": "2026-05-08T18:30:00.000Z",
+          "attempts": 1,
+          "max_attempts": 3,
+          "failure_log": []
+        },
+        {
+          "id": "m6.t5",
+          "title": "Add start.sh process supervisor: bash loop that restarts 'npx tsx src/index.ts' on exit, with 5s backoff; chmod +x, update README",
+          "status": "done",
+          "priority": 5,
+          "notes": "Created workspace/start.sh: sources ~/.agent-factory/credentials.env, validates TG_BOT_TOKEN, then runs 'npx tsx src/index.ts' in a while-true loop with 5s sleep on any exit. chmod +x applied. README updated: added './start.sh' as the recommended production start command with explanation of supervisor behavior, and added start.sh to the project structure tree.",
+          "depends_on": [],
+          "created": "2026-05-08T00:00:00.000Z",
+          "completed": "2026-05-08T18:24:03.000Z",
+          "attempts": 1,
+          "max_attempts": 3,
+          "failure_log": []
+        },
+        {
+          "id": "m6.t6",
+          "title": "Git commit all m6 changes, update journal.md + spending.json, run tsc --noEmit, run bot.test.ts to verify no regressions",
+          "status": "not_started",
+          "priority": 6,
+          "notes": "",
+          "depends_on": ["m6.t1", "m6.t2", "m6.t3", "m6.t4", "m6.t5"],
+          "created": "2026-05-08T00:00:00.000Z",
+          "completed": null,
+          "attempts": 0,
+          "max_attempts": 3,
+          "failure_log": []
+        }
+      ]
     }
   ]
 }
