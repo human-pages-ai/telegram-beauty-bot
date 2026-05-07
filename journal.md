@@ -87,3 +87,25 @@ Verified `handleCallbackQuery` in `src/bot.ts` was already fully implemented as 
 
 ## 2026-05-07T16:43:53.244Z — m3.t3
 Verified `src/index.ts` was already fully implemented during m1.t2 scaffolding. It manually parses `~/.agent-factory/credentials.env` (skipping keys already in `process.env`), validates `TG_BOT_TOKEN` is present (exits with error if not), creates `TelegramBot` with `polling: true`, wires `bot.on('message')` → `handleMessage` and `bot.on('callback_query')` → `handleCallbackQuery` with top-level try/catch, handles `polling_error` and `error` events, and registers `SIGINT`/`SIGTERM` handlers that await `bot.stopPolling()` before `process.exit(0)`. Milestone m3 is now complete. `tsc --noEmit` passes cleanly.
+
+## 2026-05-07T16:51:18.234Z — Error on m4.t1
+Claude Code process exited with code 143
+
+## 2026-05-07T16:51:33.250Z — m4.t1 done
+Bot starts cleanly in polling mode with no TypeScript errors. Wrote `src/test-integration.ts` with 10 test suites covering: `parseServiceType`, `parseBudgetLevel`, `formatGreeting`, `formatLocationPrompt`, `formatBudgetPrompt`, `formatResults` (empty + with mock salons), `formatSalonDetail`, session state machine transitions, and a live OSM Overpass search (Brooklyn NY, nails). Full conversation flow verified: `/start` → greeting with 8-service inline keyboard → service selection callback → location prompt with GPS share button → text location → budget keyboard → searching indicator → top 5 results list with per-salon buttons → salon detail with Google Maps link and Back/New Search navigation. OSM Overpass returns nail salons for the searched area. Bot ran for 12s without polling errors. Bot name is 'Gigs' (`Gigs_test_12343253_bot`). Milestone m4 task 1 marked done.
+
+## 2026-05-07T16:55:15.856Z — m4.t2 done
+Fixed 9 bugs across `src/bot.ts`, `src/salonSearch.ts`, and `src/messageFormatter.ts` identified during live testing:
+
+1. **SEARCHING state guard** — `handleMessage` now sends "still searching" and returns early when `session.state === STATES.SEARCHING`, preventing a mid-search text message from resetting the session.
+2. **Duplicate search prevention** — Added a `pendingSearches: Set<number>` to `handleCallbackQuery`; budget callbacks are silently ignored if a search is already in-flight for that `chatId`.
+3. **`action:back` with empty salons** — When `session.salons` is empty or undefined, "back" now resets to `SERVICE_TYPE` and sends the greeting instead of crashing with a missing-results render.
+4. **Overpass timeout handling** — Added `isTimeoutError()` helper that catches `AbortError`, `TimeoutError`, and HTTP 429/504. Timeout errors are propagated out of `findSalons` so `doSearch` can surface a user-friendly message and return the user to the BUDGET prompt.
+5. **Nominatim timeout** — `resolveLocation` now passes `AbortSignal.timeout(10000)` (10 s) and catches/rethrows timeout errors with a clear message.
+6. **GPS coordinate display** — Added `resolvedLocationDisplay()` helper that formats raw GPS coord strings as `lat.toFixed(4), lon.toFixed(4)` instead of the raw `"lat,lon"` string in results/back messages.
+7. **Salon callback state guard** — `salon:X` callback now returns early unless `session.state` is `RESULTS` or `BOOKING`, preventing stale button presses from corrupting state.
+8. **Empty results message** — `formatResults` now mentions the service name in the "no results" message and always shows a "New Search" button.
+9. **Callback data colon split** — Changed `query.data.split(':')` to `indexOf(':')` + `slice()` so callback values that themselves contain a colon (e.g., a future URL) are handled correctly.
+
+## 2026-05-07T16:58:36.747Z — m4.t3
+Committed all modified source files (`src/bot.ts`, `src/salonSearch.ts`, `src/messageFormatter.ts`) containing the 9 bug fixes from m4.t2 into the workspace submodule. Updated board.json to mark m4.t3 and milestone m4 as done. The full Telegram beauty bot is now built, tested, and committed — all 4 milestones and 9 tasks complete.

@@ -53,6 +53,24 @@
       "what": "m3.t1: Write src/bot.ts — Telegram message handler: port WhatsApp state machine, handle text messages + location messages + /start + /help commands",
       "amount": 0.2898,
       "currency": "USD"
+    },
+    {
+      "date": "2026-05-07T16:43:02.632Z",
+      "what": "m3.t2: Write src/bot.ts callback query handler — handle service selection, budget selection, result selection, back/new-search navigation via callback_data",
+      "amount": 0.2194,
+      "currency": "USD"
+    },
+    {
+      "date": "2026-05-07T16:43:38.227Z",
+      "what": "skill extraction: m3.t2",
+      "amount": 0.1027,
+      "currency": "USD"
+    },
+    {
+      "date": "2026-05-07T16:44:50.324Z",
+      "what": "m3.t3: Write src/index.ts — entry point: load .env (TG_BOT_TOKEN), create TelegramBot in polling mode, wire message + callback_query handlers, graceful shutdown",
+      "amount": 0.2509,
+      "currency": "USD"
     }
   ]
 }
