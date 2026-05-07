@@ -96,18 +96,18 @@
     {
       "id": "m3",
       "title": "Telegram bot engine",
-      "status": "not_started",
+      "status": "in_progress",
       "tasks": [
         {
           "id": "m3.t1",
           "title": "Write src/bot.ts — Telegram message handler: port WhatsApp state machine, handle text messages + location messages + /start + /help commands",
-          "status": "not_started",
+          "status": "done",
           "priority": 1,
-          "notes": "Accept TelegramBot instance + update. Handle msg.location for GPS coordinates (skip geocoding). Handle callback_query separately. States: SERVICE_TYPE→LOCATION→BUDGET→SEARCHING→RESULTS→BOOKING.",
+          "notes": "src/bot.ts was implemented during m1.t2 scaffolding. Full state machine: SERVICE_TYPE→LOCATION→BUDGET→SEARCHING→RESULTS→BOOKING. handleMessage handles text + msg.location (GPS skip geocoding) + /start + /help. handleCallbackQuery handles service:, budget:, salon:, action: callback data. doSearch helper sends searching message then calls findSalons with optional gpsCoords. Uses HTML parse mode throughout. tsc --noEmit passes cleanly.",
           "depends_on": ["m2.t2", "m2.t3", "m2.t4"],
           "created": "2026-05-07T16:28:23.463Z",
-          "completed": null,
-          "attempts": 0,
+          "completed": "2026-05-07T16:40:47.980Z",
+          "attempts": 1,
           "max_attempts": 3,
           "failure_log": []
         },
