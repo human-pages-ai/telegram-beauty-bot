@@ -123,7 +123,55 @@
     {
       "date": "2026-05-08T18:11:17.161Z",
       "what": "m5.t6: Run tsc --noEmit, fix any type errors, git commit all m5 changes, update journal.md + spending.json",
-      "amount": 0.0,
+      "amount": 0,
+      "currency": "USD"
+    },
+    {
+      "date": "2026-05-07T18:12:28.312Z",
+      "what": "m5.t6: Run tsc --noEmit, fix any type errors, git commit all m5 changes, update journal.md + spending.json",
+      "amount": 0.2653,
+      "currency": "USD"
+    },
+    {
+      "date": "2026-05-07T18:19:28.805Z",
+      "what": "m6.t1: Fix landing page: remove fake beautybot.app URLs, use actual bot URL (t.me/Gigs_test_12343253_bot) and relative paths for og:image",
+      "amount": 0.2292,
+      "currency": "USD"
+    },
+    {
+      "date": "2026-05-07T18:20:26.578Z",
+      "what": "m6.t2: Show distance in salon detail view (formatSalonDetail): add '📏 X.X km away' line using salon.distance field",
+      "amount": 0.2139,
+      "currency": "USD"
+    },
+    {
+      "date": "2026-05-07T18:21:52.747Z",
+      "what": "m6.t3: Add in-memory search result cache in salonSearch.ts: cache findSalons results by (serviceType, lat, lon, budget) key with 15-min TTL; avoids redundant OSM + Nominatim calls",
+      "amount": 0.2958,
+      "currency": "USD"
+    },
+    {
+      "date": "2026-05-07T18:22:24.479Z",
+      "what": "skill extraction: m6.t3",
+      "amount": 0.1139,
+      "currency": "USD"
+    },
+    {
+      "date": "2026-05-07T18:23:48.741Z",
+      "what": "m6.t4: Add /feedback command to bot.ts: let users type '/feedback <text>' which logs to analytics + console; reply with a thank-you message",
+      "amount": 0.2845,
+      "currency": "USD"
+    },
+    {
+      "date": "2026-05-07T18:25:01.388Z",
+      "what": "m6.t5: Add start.sh process supervisor: bash loop that restarts 'npx tsx src/index.ts' on exit, with 5s backoff; chmod +x, update README",
+      "amount": 0.2838,
+      "currency": "USD"
+    },
+    {
+      "date": "2026-05-07T18:25:16.683Z",
+      "what": "m6.t6: Run tsc --noEmit, run bot.test.ts (32/32 pass), git commit all m6 changes, update journal.md + spending.json",
+      "amount": 0,
       "currency": "USD"
     }
   ]

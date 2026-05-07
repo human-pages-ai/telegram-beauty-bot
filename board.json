@@ -304,7 +304,7 @@
     {
       "id": "m6",
       "title": "UX polish, caching & reliability",
-      "status": "in_progress",
+      "status": "done",
       "tasks": [
         {
           "id": "m6.t1",
@@ -374,13 +374,13 @@
         {
           "id": "m6.t6",
           "title": "Git commit all m6 changes, update journal.md + spending.json, run tsc --noEmit, run bot.test.ts to verify no regressions",
-          "status": "not_started",
+          "status": "done",
           "priority": 6,
-          "notes": "",
+          "notes": "tsc --noEmit passed with zero errors. All 32 bot.test.ts tests pass (full conversation flow, GPS flow, edge cases, formatter unit tests). All m6 changes were already committed in prior task commits — working tree was clean. Milestone m6 complete.",
           "depends_on": ["m6.t1", "m6.t2", "m6.t3", "m6.t4", "m6.t5"],
           "created": "2026-05-08T00:00:00.000Z",
-          "completed": null,
-          "attempts": 0,
+          "completed": "2026-05-07T18:25:16.683Z",
+          "attempts": 1,
           "max_attempts": 3,
           "failure_log": []
         }

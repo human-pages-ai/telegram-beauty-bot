@@ -321,3 +321,6 @@ Added `/feedback` command to `bot.ts`: blank `/feedback` shows usage hint; non-e
 
 ## 2026-05-07T18:24:03.749Z — m6.t5
 Created `workspace/start.sh`: a bash process supervisor that sources `~/.agent-factory/credentials.env`, validates `TG_BOT_TOKEN`, then runs `npx tsx src/index.ts` in a `while true` loop — restarting automatically after any crash or clean exit with a 5-second backoff. Applied `chmod +x`. Updated `README.md` to document `./start.sh` as the recommended production start command and added it to the project structure tree.
+
+## 2026-05-07T18:25:16.683Z — m6.t6
+Ran `tsc --noEmit` — zero type errors. Ran `npx tsx --test src/bot.test.ts` — all 32 tests pass (full conversation flow, GPS flow, edge cases, formatter unit tests). All m6 changes were already committed in prior task commits; working tree was clean. Milestone m6 complete.
