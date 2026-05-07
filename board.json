@@ -68,13 +68,13 @@
         {
           "id": "m2.t3",
           "title": "Port src/salonSearch.ts from WhatsApp salonSearch.js — resolveLocation (Nominatim), searchOSM (Overpass), searchGoogle (Places fallback), rankSalons, findSalons",
-          "status": "not_started",
+          "status": "done",
           "priority": 3,
-          "notes": "Replace axios with fetch (built-in Node 18+). Keep same OSM_SHOP_TAGS, haversine, scoring weights. Handle GPS coordinates from Telegram location messages directly (no Nominatim call needed).",
+          "notes": "salonSearch.ts was already fully implemented during m1.t2. Uses native fetch (not axios). resolveLocation handles GPS coord strings and Nominatim geocoding. searchOSM posts to Overpass API with service-specific shop tags + amenity=massage filter. searchGoogle calls Places nearbysearch with placeType mapping. rankSalons uses 35% adjustedRating + 35% distance + 20% budget + 10% reviewConfidence weights. findSalons accepts optional gpsCoords to skip Nominatim for Telegram location messages. tsc --noEmit passes cleanly.",
           "depends_on": ["m2.t1"],
           "created": "2026-05-07T16:28:23.463Z",
-          "completed": null,
-          "attempts": 0,
+          "completed": "2026-05-07T16:37:47.324Z",
+          "attempts": 1,
           "max_attempts": 3,
           "failure_log": []
         },

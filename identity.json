@@ -1,0 +1,9 @@
+{
+  "id": "1778171303456-build-a-telegram-bot-that-helps-women-fi",
+  "name": "telegram-beauty-bot",
+  "goal": "Build a Telegram bot that helps women find beauty salons (nails, hair, eyebrows, lashes, waxing, massage, makeup) near them. Port the existing WhatsApp beauty bot to Telegram with inline keyboards, location sharing support, and rich formatting. Use the bot token from credentials.env. Deploy and test it live.",
+  "budget": 50,
+  "singlePurchaseLimit": 20,
+  "createdAt": "2026-05-07T16:28:23.460Z",
+  "dir": "/home/ubuntu/projects/agent-factory/identities/1778171303456-build-a-telegram-bot-that-helps-women-fi"
+}

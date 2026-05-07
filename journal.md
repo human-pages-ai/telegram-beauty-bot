@@ -70,5 +70,8 @@ Created all 6 TypeScript source files in `workspace/src/`: `types.ts` (interface
 ## 2026-05-07T16:36:51.519Z — m2.t2
 Verified `src/sessionStore.ts` was already written during m1.t2 and is complete. Uses plain `Map<number, {session, timer}>` with `setTimeout` for TTL — no NodeCache dependency. Exports `getSession`, `saveSession`, `resetSession`, and `STATES` (re-exported `BotState` enum). `timer.unref()` prevents the TTL timer from blocking process exit. Task marked done.
 
+## 2026-05-07T16:37:47.324Z — m2.t3
+Verified `src/salonSearch.ts` was already fully implemented during m1.t2 and is complete. Uses native `fetch` (not axios): `resolveLocation` handles GPS coord strings directly and falls back to Nominatim geocoding; `searchOSM` posts to Overpass API with service-specific `OSM_SHOP_TAGS` plus an `amenity=massage` filter; `searchGoogle` calls Places nearbysearch with a `placeType` map; `rankSalons` uses 35% adjusted rating + 35% distance + 20% budget + 10% review confidence weights with log-scale normalization; `findSalons` accepts optional `gpsCoords` to skip Nominatim entirely for Telegram location messages. `tsc --noEmit` passes with zero errors.
+
 ## 2026-05-07T16:35:49.068Z — m2.t1
 Verified `src/types.ts` was already written during m1.t2 and is complete. It exports: `BotState` enum (GREETING/SERVICE_TYPE/LOCATION/BUDGET/SEARCHING/RESULTS/BOOKING), `ServiceType` union type (nails|hair|eyebrows|lashes|waxing|massage|makeup|general), `BudgetLevel` (1|2|3|4 numeric union), `Salon` interface with all OSM/Google Places fields plus computed `distance`/`score`, `ResolvedLocation` interface, and `Session` interface keyed by `chatId` (number). Task marked done.
