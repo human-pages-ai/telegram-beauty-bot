@@ -29,6 +29,30 @@
       "what": "m2.t2: Port src/sessionStore.ts from WhatsApp sessionStore.js — in-memory Map with TTL, typed with Session interface",
       "amount": 0.1624,
       "currency": "USD"
+    },
+    {
+      "date": "2026-05-07T16:38:45.090Z",
+      "what": "m2.t3: Port src/salonSearch.ts from WhatsApp salonSearch.js — resolveLocation (Nominatim), searchOSM (Overpass), searchGoogle (Places fallback), rankSalons, findSalons",
+      "amount": 0.2249,
+      "currency": "USD"
+    },
+    {
+      "date": "2026-05-07T16:39:21.702Z",
+      "what": "skill extraction: m2.t3",
+      "amount": 0.0968,
+      "currency": "USD"
+    },
+    {
+      "date": "2026-05-07T16:40:32.964Z",
+      "what": "m2.t4: Port src/messageFormatter.ts from WhatsApp messageFormatter.js — adapt to HTML parse mode (Telegram), add inline keyboard builders for service/budget/results/navigation",
+      "amount": 0.2648,
+      "currency": "USD"
+    },
+    {
+      "date": "2026-05-07T16:41:48.997Z",
+      "what": "m3.t1: Write src/bot.ts — Telegram message handler: port WhatsApp state machine, handle text messages + location messages + /start + /help commands",
+      "amount": 0.2898,
+      "currency": "USD"
     }
   ]
 }

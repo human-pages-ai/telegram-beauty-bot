@@ -114,13 +114,13 @@
         {
           "id": "m3.t2",
           "title": "Write src/bot.ts callback query handler — handle service selection, budget selection, result selection, back/new-search navigation via callback_data",
-          "status": "not_started",
+          "status": "done",
           "priority": 2,
-          "notes": "Callback data format: 'service:nails', 'budget:2', 'salon:0', 'action:back', 'action:new'. Answer callback query immediately (answerCallbackQuery) then update session and reply.",
+          "notes": "handleCallbackQuery was already fully implemented in bot.ts as part of m3.t1. Parses callback_data by splitting on ':' to get [action, value]. Calls answerCallbackQuery immediately. Handles: service:* (reset session, set serviceType, move to LOCATION), budget:* (parseInt budgetLevel, call doSearch), salon:* (lookup by index, show detail), action:back (restore RESULTS state, re-send results), action:new (full reset, send greeting). tsc --noEmit passes cleanly.",
           "depends_on": ["m3.t1"],
           "created": "2026-05-07T16:28:23.463Z",
-          "completed": null,
-          "attempts": 0,
+          "completed": "2026-05-07T16:42:04.014Z",
+          "attempts": 1,
           "max_attempts": 3,
           "failure_log": []
         },

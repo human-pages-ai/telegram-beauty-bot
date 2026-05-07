@@ -81,3 +81,6 @@ Verified `src/messageFormatter.ts` was already fully implemented during m1.t2 sc
 
 ## 2026-05-07T16:40:47.980Z — m3.t1
 Verified `src/bot.ts` was already fully implemented during m1.t2 scaffolding. It exports `handleMessage` (handles text messages, native GPS location share, /start, /help, and all conversation states) and `handleCallbackQuery` (handles service:, budget:, salon:, action: callback data). Full state machine: SERVICE_TYPE→LOCATION→BUDGET→SEARCHING→RESULTS→BOOKING. GPS location messages skip Nominatim geocoding by passing `gpsCoords` directly to `findSalons`. `doSearch` helper sends a "searching" indicator then calls `findSalons` and renders results. All error paths handled (location not found resets to LOCATION state). tsc --noEmit passes cleanly.
+
+## 2026-05-07T16:42:04.014Z — m3.t2
+Verified `handleCallbackQuery` in `src/bot.ts` was already fully implemented as part of m3.t1. It calls `answerCallbackQuery` immediately on every query, then parses `callback_data` by splitting on `:` to dispatch to four handlers: `service:*` (resets session, sets serviceType, transitions to LOCATION), `budget:*` (parses int budget level, calls doSearch), `salon:*` (looks up salon by zero-based index, shows detail), `action:back`/`action:new` (restores results list or full reset). tsc --noEmit passes cleanly.
