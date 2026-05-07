@@ -1,0 +1,338 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>BeautyBot — Find Nail Salons, Hair Salons & More on Telegram</title>
+  <meta name="description" content="BeautyBot is a free Telegram bot that helps you find nail salons, hair salons, eyebrow studios, lash bars, spas, and more near you. Share your location, pick your budget, and get the top 5 ranked options in seconds." />
+  <meta name="keywords" content="find nail salon near me, hair salon near me, eyebrow threading near me, lash extensions near me, beauty salon Telegram bot, spa near me" />
+  <meta name="author" content="BeautyBot" />
+
+  <!-- Open Graph / Facebook / WhatsApp -->
+  <meta property="og:type" content="website" />
+  <meta property="og:title" content="BeautyBot — Find Beauty Salons Near You on Telegram" />
+  <meta property="og:description" content="Search nail salons, hair salons, eyebrow studios, lash bars, waxing, massage, and makeup artists near you — all inside Telegram. Free. No app needed." />
+  <meta property="og:image" content="og-image.png" />
+  <meta property="og:url" content="https://t.me/Gigs_test_12343253_bot" />
+
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="BeautyBot — Find Beauty Salons Near You" />
+  <meta name="twitter:description" content="Nail salons, hair salons, spas and more — found and ranked for you in Telegram." />
+
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --pink: #e91e8c;
+      --pink-light: #fce4f0;
+      --pink-dark: #c2166f;
+      --text: #1a1a2e;
+      --muted: #666;
+      --bg: #fff;
+      --card-bg: #fafafa;
+      --radius: 12px;
+    }
+
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+      color: var(--text);
+      background: var(--bg);
+      line-height: 1.6;
+    }
+
+    a { color: inherit; text-decoration: none; }
+
+    /* ---- HERO ---- */
+    .hero {
+      background: linear-gradient(135deg, #fce4f0 0%, #f8f0ff 100%);
+      padding: 64px 24px 56px;
+      text-align: center;
+    }
+
+    .hero-emoji { font-size: 56px; margin-bottom: 16px; }
+
+    .hero h1 {
+      font-size: clamp(2rem, 5vw, 3rem);
+      font-weight: 800;
+      color: var(--pink-dark);
+      margin-bottom: 16px;
+      letter-spacing: -0.5px;
+    }
+
+    .hero p {
+      font-size: 1.15rem;
+      color: var(--muted);
+      max-width: 540px;
+      margin: 0 auto 32px;
+    }
+
+    .cta-button {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      background: var(--pink);
+      color: #fff;
+      font-size: 1.1rem;
+      font-weight: 700;
+      padding: 16px 32px;
+      border-radius: 50px;
+      transition: background 0.2s, transform 0.1s;
+      box-shadow: 0 4px 20px rgba(233, 30, 140, 0.3);
+    }
+
+    .cta-button:hover { background: var(--pink-dark); transform: translateY(-1px); }
+    .cta-button:active { transform: translateY(0); }
+
+    .cta-sub {
+      margin-top: 12px;
+      font-size: 0.85rem;
+      color: var(--muted);
+    }
+
+    /* ---- SERVICES ---- */
+    .section {
+      padding: 56px 24px;
+      max-width: 900px;
+      margin: 0 auto;
+    }
+
+    .section h2 {
+      font-size: 1.7rem;
+      font-weight: 700;
+      text-align: center;
+      margin-bottom: 32px;
+      color: var(--pink-dark);
+    }
+
+    .services-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(130px, 1fr));
+      gap: 16px;
+    }
+
+    .service-card {
+      background: var(--pink-light);
+      border-radius: var(--radius);
+      padding: 20px 12px;
+      text-align: center;
+      font-weight: 600;
+      font-size: 0.95rem;
+      transition: transform 0.15s;
+    }
+
+    .service-card:hover { transform: translateY(-2px); }
+    .service-card .emoji { font-size: 2rem; display: block; margin-bottom: 8px; }
+
+    /* ---- HOW IT WORKS ---- */
+    .how-bg { background: var(--card-bg); }
+
+    .steps {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 24px;
+      counter-reset: step;
+    }
+
+    .step {
+      background: #fff;
+      border-radius: var(--radius);
+      padding: 28px 20px;
+      position: relative;
+      box-shadow: 0 2px 12px rgba(0,0,0,0.06);
+      counter-increment: step;
+    }
+
+    .step::before {
+      content: counter(step);
+      position: absolute;
+      top: -14px;
+      left: 20px;
+      background: var(--pink);
+      color: #fff;
+      font-size: 0.85rem;
+      font-weight: 800;
+      width: 28px;
+      height: 28px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .step-emoji { font-size: 2rem; margin-bottom: 10px; }
+    .step h3 { font-size: 1rem; font-weight: 700; margin-bottom: 6px; }
+    .step p { font-size: 0.9rem; color: var(--muted); }
+
+    /* ---- WHY ---- */
+    .why-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      gap: 20px;
+    }
+
+    .why-card {
+      border: 1.5px solid var(--pink-light);
+      border-radius: var(--radius);
+      padding: 24px 20px;
+    }
+
+    .why-card .icon { font-size: 1.8rem; margin-bottom: 10px; }
+    .why-card h3 { font-weight: 700; margin-bottom: 6px; }
+    .why-card p { font-size: 0.9rem; color: var(--muted); }
+
+    /* ---- CTA FOOTER ---- */
+    .cta-footer {
+      background: linear-gradient(135deg, var(--pink-dark) 0%, #8e24aa 100%);
+      color: #fff;
+      text-align: center;
+      padding: 56px 24px;
+    }
+
+    .cta-footer h2 { font-size: 1.8rem; font-weight: 800; margin-bottom: 12px; }
+    .cta-footer p { font-size: 1rem; opacity: 0.85; margin-bottom: 28px; }
+
+    .cta-button-white {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      background: #fff;
+      color: var(--pink-dark);
+      font-size: 1.1rem;
+      font-weight: 700;
+      padding: 16px 32px;
+      border-radius: 50px;
+      transition: opacity 0.2s;
+    }
+
+    .cta-button-white:hover { opacity: 0.9; }
+
+    /* ---- FOOTER ---- */
+    footer {
+      text-align: center;
+      padding: 28px 24px;
+      font-size: 0.8rem;
+      color: var(--muted);
+      border-top: 1px solid #eee;
+    }
+
+    footer a { color: var(--pink); }
+
+    @media (max-width: 480px) {
+      .hero { padding: 48px 16px 40px; }
+      .section { padding: 40px 16px; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- HERO -->
+  <section class="hero">
+    <div class="hero-emoji">💅</div>
+    <h1>Find Your Perfect<br>Beauty Salon — Fast</h1>
+    <p>BeautyBot searches nail salons, hair salons, eyebrow studios, lash bars, spas, and more near you. Just share your location, set your budget, and get the top picks in seconds.</p>
+    <a class="cta-button" href="https://t.me/Gigs_test_12343253_bot" target="_blank" rel="noopener">
+      <svg width="22" height="22" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M12 2C6.477 2 2 6.477 2 12s4.477 10 10 10 10-4.477 10-10S17.523 2 12 2zm4.93 6.64l-1.686 7.944c-.126.56-.457.698-.927.434l-2.56-1.886-1.234 1.188c-.137.137-.252.252-.516.252l.183-2.607 4.754-4.294c.207-.183-.045-.285-.32-.102L7.94 14.498l-2.519-.784c-.547-.172-.558-.547.114-.81l9.836-3.793c.457-.165.857.112.559.529z" fill="#fff"/></svg>
+      Open BeautyBot in Telegram
+    </a>
+    <p class="cta-sub">Free to use &bull; No sign-up required &bull; Works on all devices</p>
+  </section>
+
+  <!-- SERVICES -->
+  <section class="section">
+    <h2>What Can BeautyBot Find?</h2>
+    <div class="services-grid">
+      <div class="service-card"><span class="emoji">💅</span>Nail Salons</div>
+      <div class="service-card"><span class="emoji">💇‍♀️</span>Hair Salons</div>
+      <div class="service-card"><span class="emoji">🤨</span>Eyebrows &amp; Threading</div>
+      <div class="service-card"><span class="emoji">👁️</span>Lash Extensions</div>
+      <div class="service-card"><span class="emoji">✨</span>Waxing Studios</div>
+      <div class="service-card"><span class="emoji">💆‍♀️</span>Massage &amp; Spa</div>
+      <div class="service-card"><span class="emoji">💄</span>Makeup Artists</div>
+      <div class="service-card"><span class="emoji">🌟</span>All Beauty</div>
+    </div>
+  </section>
+
+  <!-- HOW IT WORKS -->
+  <div class="how-bg">
+    <section class="section">
+      <h2>How It Works</h2>
+      <div class="steps">
+        <div class="step">
+          <div class="step-emoji">💬</div>
+          <h3>Open BeautyBot on Telegram</h3>
+          <p>Tap the button above or search <strong>@Gigs_test_12343253_bot</strong> in Telegram and tap Start.</p>
+        </div>
+        <div class="step">
+          <div class="step-emoji">💅</div>
+          <h3>Choose Your Service</h3>
+          <p>Pick from nails, hair, eyebrows, lashes, waxing, massage, makeup, or search everything at once.</p>
+        </div>
+        <div class="step">
+          <div class="step-emoji">📍</div>
+          <h3>Share Your Location</h3>
+          <p>Tap the GPS button for instant results, or type your city, address, or zip code.</p>
+        </div>
+        <div class="step">
+          <div class="step-emoji">💰</div>
+          <h3>Set Your Budget</h3>
+          <p>Budget, Mid, Premium, or Luxury — results are ranked to match your price range.</p>
+        </div>
+        <div class="step">
+          <div class="step-emoji">⭐</div>
+          <h3>See Top Results</h3>
+          <p>Get the top 5 options ranked by rating, distance, and budget fit. Tap any result for details.</p>
+        </div>
+        <div class="step">
+          <div class="step-emoji">🗺️</div>
+          <h3>Get Directions &amp; Book</h3>
+          <p>One tap opens Google Maps. Call to book directly from the chat — no app switching needed.</p>
+        </div>
+      </div>
+    </section>
+  </div>
+
+  <!-- WHY BEAUTYBOT -->
+  <section class="section">
+    <h2>Why BeautyBot?</h2>
+    <div class="why-grid">
+      <div class="why-card">
+        <div class="icon">🆓</div>
+        <h3>Completely Free</h3>
+        <p>No subscription, no sign-up, no ads. BeautyBot uses open map data from OpenStreetMap so results are always free.</p>
+      </div>
+      <div class="why-card">
+        <div class="icon">📱</div>
+        <h3>Works in Telegram</h3>
+        <p>No new app to download. If you have Telegram, you have BeautyBot. Works on iPhone, Android, and desktop.</p>
+      </div>
+      <div class="why-card">
+        <div class="icon">⭐</div>
+        <h3>Smart Ranking</h3>
+        <p>Results are scored by rating, distance, budget match, and review confidence — not just proximity.</p>
+      </div>
+      <div class="why-card">
+        <div class="icon">🌍</div>
+        <h3>Works Worldwide</h3>
+        <p>Powered by OpenStreetMap's global dataset. Find salons in New York, London, Tel Aviv, or anywhere in between.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA FOOTER -->
+  <section class="cta-footer">
+    <h2>Ready to Find Your Salon? 💅</h2>
+    <p>Join thousands of women discovering great beauty services near them.</p>
+    <a class="cta-button-white" href="https://t.me/Gigs_test_12343253_bot" target="_blank" rel="noopener">
+      <svg width="22" height="22" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M12 2C6.477 2 2 6.477 2 12s4.477 10 10 10 10-4.477 10-10S17.523 2 12 2zm4.93 6.64l-1.686 7.944c-.126.56-.457.698-.927.434l-2.56-1.886-1.234 1.188c-.137.137-.252.252-.516.252l.183-2.607 4.754-4.294c.207-.183-.045-.285-.32-.102L7.94 14.498l-2.519-.784c-.547-.172-.558-.547.114-.81l9.836-3.793c.457-.165.857.112.559.529z" fill="#c2166f"/></svg>
+      Open BeautyBot Free
+    </a>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    <p>BeautyBot &copy; 2026 &mdash; Map data &copy; <a href="https://www.openstreetmap.org/copyright" target="_blank" rel="noopener">OpenStreetMap contributors</a> &mdash; Built with &hearts; for the beauty community</p>
+  </footer>
+
+</body>
+</html>
