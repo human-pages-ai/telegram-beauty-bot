@@ -75,3 +75,6 @@ Verified `src/salonSearch.ts` was already fully implemented during m1.t2 and is 
 
 ## 2026-05-07T16:35:49.068Z — m2.t1
 Verified `src/types.ts` was already written during m1.t2 and is complete. It exports: `BotState` enum (GREETING/SERVICE_TYPE/LOCATION/BUDGET/SEARCHING/RESULTS/BOOKING), `ServiceType` union type (nails|hair|eyebrows|lashes|waxing|massage|makeup|general), `BudgetLevel` (1|2|3|4 numeric union), `Salon` interface with all OSM/Google Places fields plus computed `distance`/`score`, `ResolvedLocation` interface, and `Session` interface keyed by `chatId` (number). Task marked done.
+
+## 2026-05-07T16:39:36.719Z — m2.t4
+Verified `src/messageFormatter.ts` was already fully implemented during m1.t2 scaffolding. Uses HTML parse mode throughout with an `esc()` helper for safe HTML insertion. Inline keyboards: service grid (2×4 InlineKeyboardMarkup), budget row (4 buttons), results list (one button per salon + New Search nav row), salon detail view (Call/Directions URL buttons + Back + New Search action buttons). `formatLocationPrompt` returns a `ReplyKeyboardMarkup` with a "Share My Location" GPS button. `parseServiceType` and `parseBudgetLevel` ported unchanged from WhatsApp version. Milestone m2 marked done — all 4 tasks complete.

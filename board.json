@@ -37,7 +37,7 @@
     {
       "id": "m2",
       "title": "Core modules: session store, salon search, formatters",
-      "status": "not_started",
+      "status": "done",
       "tasks": [
         {
           "id": "m2.t1",
@@ -81,13 +81,13 @@
         {
           "id": "m2.t4",
           "title": "Port src/messageFormatter.ts from WhatsApp messageFormatter.js — adapt to HTML parse mode (Telegram), add inline keyboard builders for service/budget/results/navigation",
-          "status": "not_started",
+          "status": "done",
           "priority": 4,
-          "notes": "Replace *bold* with <b>bold</b> (HTML). Build InlineKeyboardMarkup objects: service grid (2x4), budget row (4 buttons), results list (5 buttons + New Search), salon detail (Back + New Search). parseServiceType and parseBudgetLevel stay the same.",
+          "notes": "messageFormatter.ts was already fully implemented during m1.t2 scaffolding. Uses HTML parse mode throughout (<b>, <i>, <a href>). esc() helper escapes &, <, > for safe HTML insertion. Inline keyboards: service grid (2x4 InlineKeyboardMarkup), budget row (4 buttons in one row), results list (one button per salon + New Search nav row), salon detail (Call/Directions URL buttons + Back+New Search). formatLocationPrompt returns ReplyKeyboardMarkup with GPS location share button. parseServiceType and parseBudgetLevel ported unchanged. tsc --noEmit passes cleanly.",
           "depends_on": ["m2.t1"],
           "created": "2026-05-07T16:28:23.463Z",
-          "completed": null,
-          "attempts": 0,
+          "completed": "2026-05-07T16:39:36.719Z",
+          "attempts": 1,
           "max_attempts": 3,
           "failure_log": []
         }
