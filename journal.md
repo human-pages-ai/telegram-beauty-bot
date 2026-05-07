@@ -84,3 +84,6 @@ Verified `src/bot.ts` was already fully implemented during m1.t2 scaffolding. It
 
 ## 2026-05-07T16:42:04.014Z — m3.t2
 Verified `handleCallbackQuery` in `src/bot.ts` was already fully implemented as part of m3.t1. It calls `answerCallbackQuery` immediately on every query, then parses `callback_data` by splitting on `:` to dispatch to four handlers: `service:*` (resets session, sets serviceType, transitions to LOCATION), `budget:*` (parses int budget level, calls doSearch), `salon:*` (looks up salon by zero-based index, shows detail), `action:back`/`action:new` (restores results list or full reset). tsc --noEmit passes cleanly.
+
+## 2026-05-07T16:43:53.244Z — m3.t3
+Verified `src/index.ts` was already fully implemented during m1.t2 scaffolding. It manually parses `~/.agent-factory/credentials.env` (skipping keys already in `process.env`), validates `TG_BOT_TOKEN` is present (exits with error if not), creates `TelegramBot` with `polling: true`, wires `bot.on('message')` → `handleMessage` and `bot.on('callback_query')` → `handleCallbackQuery` with top-level try/catch, handles `polling_error` and `error` events, and registers `SIGINT`/`SIGTERM` handlers that await `bot.stopPolling()` before `process.exit(0)`. Milestone m3 is now complete. `tsc --noEmit` passes cleanly.

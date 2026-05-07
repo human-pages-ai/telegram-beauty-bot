@@ -96,7 +96,7 @@
     {
       "id": "m3",
       "title": "Telegram bot engine",
-      "status": "in_progress",
+      "status": "done",
       "tasks": [
         {
           "id": "m3.t1",
@@ -127,13 +127,13 @@
         {
           "id": "m3.t3",
           "title": "Write src/index.ts — entry point: load .env (TG_BOT_TOKEN), create TelegramBot in polling mode, wire message + callback_query handlers, graceful shutdown",
-          "status": "not_started",
+          "status": "done",
           "priority": 3,
-          "notes": "Use node-telegram-bot-api with polling: true. Load credentials.env via dotenv or manual env sourcing. Log startup. Handle SIGINT/SIGTERM for clean shutdown.",
+          "notes": "src/index.ts was already fully implemented during m1.t2 scaffolding. Manually parses ~/.agent-factory/credentials.env (skipping already-set keys), checks for TG_BOT_TOKEN (exits with error if missing), creates TelegramBot with polling:true, wires bot.on('message') to handleMessage and bot.on('callback_query') to handleCallbackQuery, handles polling_error and error events with console.error, and registers SIGINT/SIGTERM handlers that call bot.stopPolling() then process.exit(0). tsc --noEmit passes cleanly.",
           "depends_on": ["m3.t2"],
           "created": "2026-05-07T16:28:23.463Z",
-          "completed": null,
-          "attempts": 0,
+          "completed": "2026-05-07T16:43:53.244Z",
+          "attempts": 1,
           "max_attempts": 3,
           "failure_log": []
         }
