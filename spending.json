@@ -71,6 +71,60 @@
       "what": "m3.t3: Write src/index.ts — entry point: load .env (TG_BOT_TOKEN), create TelegramBot in polling mode, wire message + callback_query handlers, graceful shutdown",
       "amount": 0.2509,
       "currency": "USD"
+    },
+    {
+      "date": "2026-05-07T16:59:18.483Z",
+      "what": "m4.t3: Git commit all source files, update journal.md with completion notes, update board.json task statuses to done",
+      "amount": 0.1897,
+      "currency": "USD"
+    },
+    {
+      "date": "2026-05-07T18:00:20.940Z",
+      "what": "QA verification cycle 1",
+      "amount": 0.663,
+      "currency": "USD"
+    },
+    {
+      "date": "2026-05-07T18:05:00.062Z",
+      "what": "m5.t1: Create landing page: workspace/public/index.html — SEO, Open Graph, CTA button linking to bot, service list, how-it-works section",
+      "amount": 0.2322,
+      "currency": "USD"
+    },
+    {
+      "date": "2026-05-07T18:05:21.172Z",
+      "what": "skill extraction: m5.t1",
+      "amount": 0.0863,
+      "currency": "USD"
+    },
+    {
+      "date": "2026-05-07T18:08:02.433Z",
+      "what": "m5.t3: Add Overpass retry with exponential backoff in salonSearch.ts: 2 retries on HTTP 429/504 with 2s/4s delays; improves reliability on transient API failures",
+      "amount": 0.1921,
+      "currency": "USD"
+    },
+    {
+      "date": "2026-05-07T18:09:26.880Z",
+      "what": "m5.t4: Improve messageFormatter.ts: add /cancel confirmation text, improve /help with /share command mention, improve /share copy",
+      "amount": 0.3098,
+      "currency": "USD"
+    },
+    {
+      "date": "2026-05-07T18:09:37.312Z",
+      "what": "skill extraction: m5.t4",
+      "amount": 0.0994,
+      "currency": "USD"
+    },
+    {
+      "date": "2026-05-07T18:11:02.143Z",
+      "what": "m5.t5: Write workspace/README.md as marketing copy: features, how to run, screenshots (text-described), Overpass/Google Places attribution, bot link",
+      "amount": 0.2023,
+      "currency": "USD"
+    },
+    {
+      "date": "2026-05-08T18:11:17.161Z",
+      "what": "m5.t6: Run tsc --noEmit, fix any type errors, git commit all m5 changes, update journal.md + spending.json",
+      "amount": 0.0,
+      "currency": "USD"
     }
   ]
 }

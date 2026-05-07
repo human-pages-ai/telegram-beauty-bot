@@ -215,6 +215,91 @@
           "failure_log": []
         }
       ]
+    },
+    {
+      "id": "m5",
+      "title": "Growth, UX polish & reliability",
+      "status": "done",
+      "tasks": [
+        {
+          "id": "m5.t1",
+          "title": "Create landing page: workspace/public/index.html — SEO, Open Graph, CTA button linking to bot, service list, how-it-works section",
+          "status": "done",
+          "priority": 1,
+          "notes": "Created workspace/public/index.html — full single-page landing site with SEO title/description meta tags, Open Graph + Twitter Card tags, pink gradient hero with CTA button linking to t.me/Gigs_test_12343253_bot, 8-service grid (nails/hair/eyebrows/lashes/waxing/massage/makeup/all), 6-step how-it-works section with numbered step cards, why-BeautyBot 4-card grid (free/Telegram/smart ranking/worldwide), second CTA footer, OSM attribution footer. Mobile-responsive with CSS grid auto-fit. No build step needed — pure HTML+CSS.",
+          "depends_on": [],
+          "created": "2026-05-08T00:00:00.000Z",
+          "completed": "2026-05-08T00:00:00.000Z",
+          "attempts": 1,
+          "max_attempts": 3,
+          "failure_log": []
+        },
+        {
+          "id": "m5.t2",
+          "title": "Enhance analytics.ts: write JSON lines to logs/usage.jsonl (file-based, append mode) in addition to stdout; create logs/ dir on first write",
+          "status": "done",
+          "priority": 2,
+          "notes": "analytics.ts already implemented file-based JSON line logging with mkdirSync (recursive) + appendFileSync. Verified end-to-end: logs/usage.jsonl is created and written on first logUsage() call. Added logs/ to .gitignore so runtime log files are not committed.",
+          "depends_on": [],
+          "created": "2026-05-08T00:00:00.000Z",
+          "completed": "2026-05-07T18:05:36.190Z",
+          "attempts": 1,
+          "max_attempts": 3,
+          "failure_log": []
+        },
+        {
+          "id": "m5.t3",
+          "title": "Add Overpass retry with exponential backoff in salonSearch.ts: 2 retries on HTTP 429/504 with 2s/4s delays; improves reliability on transient API failures",
+          "status": "done",
+          "priority": 3,
+          "notes": "Verified that salonSearch.ts already contains the full retry implementation (MAX_ATTEMPTS=3, BACKOFF_MS=[0,2000,4000]). The for-loop retries on HTTP 429 and 504 only; non-retriable errors and network errors propagate immediately. A delay() helper uses setTimeout to sleep between attempts. Added during m4.t2 bug fixes. No code changes needed.",
+          "depends_on": [],
+          "created": "2026-05-08T00:00:00.000Z",
+          "completed": "2026-05-08T18:07:20.809Z",
+          "attempts": 1,
+          "max_attempts": 3,
+          "failure_log": []
+        },
+        {
+          "id": "m5.t4",
+          "title": "Improve messageFormatter.ts: add /cancel confirmation text, improve /help with /share command mention, improve /share copy",
+          "status": "done",
+          "priority": 4,
+          "notes": "Added formatCancel() exporting a friendly HTML confirmation message. Updated /help to clarify /share description and added a tip line inviting users to share. Rewrote /share copy to be more inviting (added 'beauty concierge' positioning, added ranked-by bullets, formatted checkmarks on one line). Wired formatCancel into bot.ts replacing inline string.",
+          "depends_on": [],
+          "created": "2026-05-08T00:00:00.000Z",
+          "completed": "2026-05-08T18:08:17.725Z",
+          "attempts": 1,
+          "max_attempts": 3,
+          "failure_log": []
+        },
+        {
+          "id": "m5.t5",
+          "title": "Write workspace/README.md as marketing copy: features, how to run, screenshots (text-described), Overpass/Google Places attribution, bot link",
+          "status": "done",
+          "priority": 5,
+          "notes": "Created workspace/README.md with: hero section with bot link (t.me/Gigs_test_12343253_bot), feature table (7 service types), feature list (inline keyboards, GPS, budget, ranking, rich cards, one-tap actions, sessions, worldwide), full example conversation transcript, commands table, how-to-run with env vars + project structure, architecture section (search pipeline + reliability), data attribution (OSM/Nominatim/Google Places with ODbL note), tech stack. Marketing-forward tone throughout.",
+          "depends_on": [],
+          "created": "2026-05-08T00:00:00.000Z",
+          "completed": "2026-05-08T18:09:52.000Z",
+          "attempts": 1,
+          "max_attempts": 3,
+          "failure_log": []
+        },
+        {
+          "id": "m5.t6",
+          "title": "Run tsc --noEmit, fix any type errors, git commit all m5 changes, update journal.md + spending.json",
+          "status": "done",
+          "priority": 6,
+          "notes": "tsc --noEmit passed with zero errors. All m5 source changes were already committed in prior tasks (m5.t1–m5.t5 + qa commit). Confirmed full git log: landing page, analytics.ts, README.md, messageFormatter improvements all present. Milestone m5 complete.",
+          "depends_on": ["m5.t1", "m5.t2", "m5.t3", "m5.t4", "m5.t5"],
+          "created": "2026-05-08T00:00:00.000Z",
+          "completed": "2026-05-08T18:11:17.161Z",
+          "attempts": 1,
+          "max_attempts": 3,
+          "failure_log": []
+        }
+      ]
     }
   ]
 }
