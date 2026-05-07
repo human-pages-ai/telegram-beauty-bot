@@ -1,0 +1,189 @@
+{
+  "goal": "Build and deploy a Telegram bot that helps women find beauty salons (nails, hair, eyebrows, lashes, waxing, massage, makeup) near them, with inline keyboards, location sharing, and rich HTML formatting. Ported from the existing WhatsApp beauty bot.",
+  "milestones": [
+    {
+      "id": "m1",
+      "title": "Project scaffolding & dependencies",
+      "status": "done",
+      "tasks": [
+        {
+          "id": "m1.t1",
+          "title": "Initialize workspace: package.json, tsconfig.json, .gitignore, install dependencies (typescript, tsx, node-telegram-bot-api types, axios, node-cache)",
+          "status": "done",
+          "priority": 1,
+          "notes": "Created package.json with all required deps (node-telegram-bot-api, @types/node-telegram-bot-api, axios, node-cache, tsx, typescript). Created tsconfig.json targeting ES2022/CommonJS. .gitignore was already present. npm install completed successfully with 198 packages.",
+          "depends_on": [],
+          "created": "2026-05-07T16:28:23.463Z",
+          "completed": "2026-05-07T16:30:24.169Z",
+          "attempts": 1,
+          "max_attempts": 3,
+          "failure_log": []
+        },
+        {
+          "id": "m1.t2",
+          "title": "Create src/ directory structure: index.ts, bot.ts, sessionStore.ts, salonSearch.ts, messageFormatter.ts, types.ts",
+          "status": "done",
+          "priority": 2,
+          "notes": "Created all 6 TypeScript source files. types.ts defines Session, Salon, ServiceType, BudgetLevel, BotState. sessionStore.ts uses in-memory Map with TTL (no NodeCache). salonSearch.ts uses native fetch instead of axios, supports GPS coords directly. messageFormatter.ts uses HTML parse mode with InlineKeyboardMarkup builders. bot.ts implements full state machine with text + location + callback_query handlers. index.ts loads credentials.env, starts polling, wires handlers with graceful shutdown. tsc --noEmit passes cleanly.",
+          "depends_on": ["m1.t1"],
+          "created": "2026-05-07T16:28:23.463Z",
+          "completed": "2026-05-07T16:31:30.685Z",
+          "attempts": 1,
+          "max_attempts": 3,
+          "failure_log": []
+        }
+      ]
+    },
+    {
+      "id": "m2",
+      "title": "Core modules: session store, salon search, formatters",
+      "status": "not_started",
+      "tasks": [
+        {
+          "id": "m2.t1",
+          "title": "Write src/types.ts: Session, Salon, ServiceType, BudgetLevel, BotState types",
+          "status": "done",
+          "priority": 1,
+          "notes": "types.ts complete: BotState enum (GREETING/SERVICE_TYPE/LOCATION/BUDGET/SEARCHING/RESULTS/BOOKING), ServiceType union (nails|hair|eyebrows|lashes|waxing|massage|makeup|general), BudgetLevel (1|2|3|4), Salon interface (id/name/address/lat/lon/phone/website/opening_hours/rating/user_ratings_total/price_level/source/distance/score), ResolvedLocation interface, Session interface (chatId/state/serviceType/location/budgetLevel/salons/selectedSalon/resolvedLocation).",
+          "depends_on": ["m1.t2"],
+          "created": "2026-05-07T16:28:23.463Z",
+          "completed": "2026-05-07T16:35:49.068Z",
+          "attempts": 1,
+          "max_attempts": 3,
+          "failure_log": []
+        },
+        {
+          "id": "m2.t2",
+          "title": "Port src/sessionStore.ts from WhatsApp sessionStore.js — in-memory Map with TTL, typed with Session interface",
+          "status": "done",
+          "priority": 2,
+          "notes": "sessionStore.ts was already fully implemented during m1.t2. Uses plain Map<number, {session, timer}> with setTimeout for TTL (no NodeCache). Keys by chatId (number). Exports getSession, saveSession, resetSession, and STATES (re-exported as BotState enum). freshSession() returns a typed Session with all nullable fields initialized. timer.unref() prevents the timer from keeping the process alive.",
+          "depends_on": ["m2.t1"],
+          "created": "2026-05-07T16:28:23.463Z",
+          "completed": "2026-05-07T16:36:51.519Z",
+          "attempts": 1,
+          "max_attempts": 3,
+          "failure_log": []
+        },
+        {
+          "id": "m2.t3",
+          "title": "Port src/salonSearch.ts from WhatsApp salonSearch.js — resolveLocation (Nominatim), searchOSM (Overpass), searchGoogle (Places fallback), rankSalons, findSalons",
+          "status": "not_started",
+          "priority": 3,
+          "notes": "Replace axios with fetch (built-in Node 18+). Keep same OSM_SHOP_TAGS, haversine, scoring weights. Handle GPS coordinates from Telegram location messages directly (no Nominatim call needed).",
+          "depends_on": ["m2.t1"],
+          "created": "2026-05-07T16:28:23.463Z",
+          "completed": null,
+          "attempts": 0,
+          "max_attempts": 3,
+          "failure_log": []
+        },
+        {
+          "id": "m2.t4",
+          "title": "Port src/messageFormatter.ts from WhatsApp messageFormatter.js — adapt to HTML parse mode (Telegram), add inline keyboard builders for service/budget/results/navigation",
+          "status": "not_started",
+          "priority": 4,
+          "notes": "Replace *bold* with <b>bold</b> (HTML). Build InlineKeyboardMarkup objects: service grid (2x4), budget row (4 buttons), results list (5 buttons + New Search), salon detail (Back + New Search). parseServiceType and parseBudgetLevel stay the same.",
+          "depends_on": ["m2.t1"],
+          "created": "2026-05-07T16:28:23.463Z",
+          "completed": null,
+          "attempts": 0,
+          "max_attempts": 3,
+          "failure_log": []
+        }
+      ]
+    },
+    {
+      "id": "m3",
+      "title": "Telegram bot engine",
+      "status": "not_started",
+      "tasks": [
+        {
+          "id": "m3.t1",
+          "title": "Write src/bot.ts — Telegram message handler: port WhatsApp state machine, handle text messages + location messages + /start + /help commands",
+          "status": "not_started",
+          "priority": 1,
+          "notes": "Accept TelegramBot instance + update. Handle msg.location for GPS coordinates (skip geocoding). Handle callback_query separately. States: SERVICE_TYPE→LOCATION→BUDGET→SEARCHING→RESULTS→BOOKING.",
+          "depends_on": ["m2.t2", "m2.t3", "m2.t4"],
+          "created": "2026-05-07T16:28:23.463Z",
+          "completed": null,
+          "attempts": 0,
+          "max_attempts": 3,
+          "failure_log": []
+        },
+        {
+          "id": "m3.t2",
+          "title": "Write src/bot.ts callback query handler — handle service selection, budget selection, result selection, back/new-search navigation via callback_data",
+          "status": "not_started",
+          "priority": 2,
+          "notes": "Callback data format: 'service:nails', 'budget:2', 'salon:0', 'action:back', 'action:new'. Answer callback query immediately (answerCallbackQuery) then update session and reply.",
+          "depends_on": ["m3.t1"],
+          "created": "2026-05-07T16:28:23.463Z",
+          "completed": null,
+          "attempts": 0,
+          "max_attempts": 3,
+          "failure_log": []
+        },
+        {
+          "id": "m3.t3",
+          "title": "Write src/index.ts — entry point: load .env (TG_BOT_TOKEN), create TelegramBot in polling mode, wire message + callback_query handlers, graceful shutdown",
+          "status": "not_started",
+          "priority": 3,
+          "notes": "Use node-telegram-bot-api with polling: true. Load credentials.env via dotenv or manual env sourcing. Log startup. Handle SIGINT/SIGTERM for clean shutdown.",
+          "depends_on": ["m3.t2"],
+          "created": "2026-05-07T16:28:23.463Z",
+          "completed": null,
+          "attempts": 0,
+          "max_attempts": 3,
+          "failure_log": []
+        }
+      ]
+    },
+    {
+      "id": "m4",
+      "title": "Testing & deployment",
+      "status": "not_started",
+      "tasks": [
+        {
+          "id": "m4.t1",
+          "title": "Run bot locally with 'npx tsx src/index.ts', verify startup, test /start command end-to-end (service → location → budget → results flow)",
+          "status": "not_started",
+          "priority": 1,
+          "notes": "Source credentials.env before running. Test with a real Telegram chat. Check OSM Overpass returns results for a known city. Verify inline keyboards render correctly.",
+          "depends_on": ["m3.t3"],
+          "created": "2026-05-07T16:28:23.463Z",
+          "completed": null,
+          "attempts": 0,
+          "max_attempts": 3,
+          "failure_log": []
+        },
+        {
+          "id": "m4.t2",
+          "title": "Fix any bugs found during live testing: error handling, empty results, geocoding failures, callback query edge cases",
+          "status": "not_started",
+          "priority": 2,
+          "notes": "Check: what happens if Overpass times out, location not found, user sends unexpected input during SEARCHING state, duplicate callback_data presses.",
+          "depends_on": ["m4.t1"],
+          "created": "2026-05-07T16:28:23.463Z",
+          "completed": null,
+          "attempts": 0,
+          "max_attempts": 3,
+          "failure_log": []
+        },
+        {
+          "id": "m4.t3",
+          "title": "Git commit all source files, update journal.md with completion notes, update board.json task statuses to done",
+          "status": "not_started",
+          "priority": 3,
+          "notes": "Commit message should describe what was built. Do not commit credentials.env or node_modules.",
+          "depends_on": ["m4.t2"],
+          "created": "2026-05-07T16:28:23.463Z",
+          "completed": null,
+          "attempts": 0,
+          "max_attempts": 3,
+          "failure_log": []
+        }
+      ]
+    }
+  ]
+}
