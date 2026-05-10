@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://human-pages-ai.github.io/telegram-beauty-bot/sitemap.xml
