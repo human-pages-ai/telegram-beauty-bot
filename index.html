@@ -224,9 +224,198 @@
 
     footer a { color: var(--pink); }
 
+    /* ---- USER COUNT BADGE ---- */
+    .stats-bar {
+      background: #fff;
+      border-top: 3px solid var(--pink);
+      padding: 16px 24px;
+      text-align: center;
+      font-size: 0.95rem;
+      color: var(--muted);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 32px;
+      flex-wrap: wrap;
+    }
+
+    .stat-item {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .stat-number {
+      font-size: 1.25rem;
+      font-weight: 800;
+      color: var(--pink-dark);
+    }
+
+    .stat-label {
+      font-size: 0.85rem;
+      color: var(--muted);
+    }
+
+    .live-dot {
+      width: 8px;
+      height: 8px;
+      background: #22c55e;
+      border-radius: 50%;
+      display: inline-block;
+      animation: pulse 2s infinite;
+    }
+
+    @keyframes pulse {
+      0%, 100% { opacity: 1; transform: scale(1); }
+      50% { opacity: 0.6; transform: scale(1.3); }
+    }
+
+    /* ---- DEMO CONVERSATION ---- */
+    .demo-section { background: #f8f0ff; }
+
+    .phone-mockup {
+      max-width: 380px;
+      margin: 0 auto;
+      background: #fff;
+      border-radius: 24px;
+      box-shadow: 0 8px 48px rgba(0,0,0,0.15);
+      overflow: hidden;
+      border: 6px solid #1a1a2e;
+    }
+
+    .phone-status-bar {
+      background: #1a1a2e;
+      color: #fff;
+      font-size: 0.7rem;
+      padding: 6px 16px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .tg-header {
+      background: #2196F3;
+      color: #fff;
+      padding: 10px 16px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .tg-avatar {
+      width: 36px;
+      height: 36px;
+      background: var(--pink);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.2rem;
+      flex-shrink: 0;
+    }
+
+    .tg-header-info { flex: 1; }
+    .tg-header-info .name { font-weight: 700; font-size: 0.95rem; }
+    .tg-header-info .status { font-size: 0.7rem; opacity: 0.8; }
+
+    .tg-chat {
+      background: #e8eaf6;
+      background-image: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23c3cae8' fill-opacity='0.15'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+      padding: 12px 10px;
+      min-height: 480px;
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+      font-size: 0.88rem;
+    }
+
+    .msg {
+      display: flex;
+      align-items: flex-end;
+      gap: 6px;
+    }
+
+    .msg.bot { justify-content: flex-start; }
+    .msg.user { justify-content: flex-end; }
+
+    .bubble {
+      max-width: 78%;
+      padding: 8px 12px;
+      border-radius: 14px;
+      line-height: 1.45;
+      position: relative;
+    }
+
+    .msg.bot .bubble {
+      background: #fff;
+      border-bottom-left-radius: 4px;
+      box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+    }
+
+    .msg.user .bubble {
+      background: #dcf8c6;
+      border-bottom-right-radius: 4px;
+      box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+    }
+
+    .bubble .time {
+      display: block;
+      font-size: 0.68rem;
+      color: #999;
+      text-align: right;
+      margin-top: 3px;
+    }
+
+    .bubble strong { color: var(--pink-dark); }
+
+    .inline-kbd {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 5px;
+      margin-top: 8px;
+    }
+
+    .kbd-btn {
+      background: #e3f2fd;
+      border: 1px solid #90caf9;
+      border-radius: 8px;
+      padding: 5px 10px;
+      font-size: 0.78rem;
+      font-weight: 600;
+      color: #1565c0;
+      cursor: pointer;
+      white-space: nowrap;
+    }
+
+    .kbd-btn.selected {
+      background: var(--pink-light);
+      border-color: var(--pink);
+      color: var(--pink-dark);
+    }
+
+    .result-card {
+      background: #fff;
+      border-radius: 10px;
+      padding: 10px 12px;
+      margin-top: 6px;
+      box-shadow: 0 1px 4px rgba(0,0,0,0.08);
+    }
+
+    .result-card .salon-name { font-weight: 700; color: #1a1a2e; font-size: 0.9rem; }
+    .result-card .salon-meta { font-size: 0.78rem; color: var(--muted); margin-top: 2px; }
+    .result-card .salon-score { font-size: 0.8rem; color: var(--pink-dark); font-weight: 600; margin-top: 4px; }
+
+    .demo-caption {
+      text-align: center;
+      margin-top: 20px;
+      font-size: 0.9rem;
+      color: var(--muted);
+    }
+
     @media (max-width: 480px) {
       .hero { padding: 48px 16px 40px; }
       .section { padding: 40px 16px; }
+      .stats-bar { gap: 20px; }
     }
   </style>
 </head>
@@ -243,6 +432,27 @@
     </a>
     <p class="cta-sub">Free to use &bull; No sign-up required &bull; Works on all devices</p>
   </section>
+
+  <!-- USER COUNT STATS BAR -->
+  <div class="stats-bar">
+    <div class="stat-item">
+      <span class="live-dot"></span>
+      <span class="stat-number" id="js-user-count">300+</span>
+      <span class="stat-label">searches completed</span>
+    </div>
+    <div class="stat-item">
+      <span class="stat-number">143</span>
+      <span class="stat-label">salons found</span>
+    </div>
+    <div class="stat-item">
+      <span class="stat-number">7</span>
+      <span class="stat-label">service types</span>
+    </div>
+    <div class="stat-item">
+      <span class="stat-number">🌍</span>
+      <span class="stat-label">worldwide coverage</span>
+    </div>
+  </div>
 
   <!-- SERVICES -->
   <section class="section">
@@ -295,6 +505,164 @@
           <p>One tap opens Google Maps. Call to book directly from the chat — no app switching needed.</p>
         </div>
       </div>
+    </section>
+  </div>
+
+  <!-- DEMO CONVERSATION -->
+  <div class="demo-section">
+    <section class="section">
+      <h2>See It in Action</h2>
+      <p style="text-align:center;color:var(--muted);margin-top:-20px;margin-bottom:28px;">A real conversation with BeautyBot</p>
+
+      <div class="phone-mockup">
+        <!-- Status bar -->
+        <div class="phone-status-bar">
+          <span>9:41</span>
+          <span>&#9679;&#9679;&#9679; LTE &#9646;</span>
+        </div>
+
+        <!-- Telegram header -->
+        <div class="tg-header">
+          <div class="tg-avatar">💅</div>
+          <div class="tg-header-info">
+            <div class="name">BeautyBot</div>
+            <div class="status">bot</div>
+          </div>
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="white" opacity="0.8"><path d="M12 2C6.477 2 2 6.477 2 12s4.477 10 10 10 10-4.477 10-10S17.523 2 12 2zm1 15h-2v-6h2v6zm0-8h-2V7h2v2z"/></svg>
+        </div>
+
+        <!-- Chat messages -->
+        <div class="tg-chat">
+
+          <!-- Bot greeting -->
+          <div class="msg bot">
+            <div class="bubble">
+              Hi! 👋 I'm <strong>BeautyBot</strong> — your personal beauty finder.<br><br>
+              What are you looking for today?
+              <div class="inline-kbd">
+                <span class="kbd-btn selected">💅 Nails</span>
+                <span class="kbd-btn">💇‍♀️ Hair</span>
+                <span class="kbd-btn">🤨 Eyebrows</span>
+                <span class="kbd-btn">👁️ Lashes</span>
+                <span class="kbd-btn">✨ Waxing</span>
+                <span class="kbd-btn">💆‍♀️ Massage</span>
+                <span class="kbd-btn">💄 Makeup</span>
+              </div>
+              <span class="time">9:41</span>
+            </div>
+          </div>
+
+          <!-- User picks nails -->
+          <div class="msg user">
+            <div class="bubble">
+              💅 Nails
+              <span class="time">9:41 ✓✓</span>
+            </div>
+          </div>
+
+          <!-- Bot asks location -->
+          <div class="msg bot">
+            <div class="bubble">
+              Nail salons it is! 💅<br><br>
+              📍 <strong>Where are you?</strong><br>
+              Share your GPS location or type a city / address.
+              <span class="time">9:41</span>
+            </div>
+          </div>
+
+          <!-- User sends location -->
+          <div class="msg user">
+            <div class="bubble">
+              📍 <strong>Manhattan, New York</strong>
+              <span class="time">9:42 ✓✓</span>
+            </div>
+          </div>
+
+          <!-- Bot asks budget -->
+          <div class="msg bot">
+            <div class="bubble">
+              Got it — searching near <strong>Manhattan, NY</strong>!<br><br>
+              💰 <strong>What's your budget?</strong>
+              <div class="inline-kbd">
+                <span class="kbd-btn">💵 Budget</span>
+                <span class="kbd-btn selected">💳 Mid-range</span>
+                <span class="kbd-btn">💎 Premium</span>
+                <span class="kbd-btn">👑 Luxury</span>
+              </div>
+              <span class="time">9:42</span>
+            </div>
+          </div>
+
+          <!-- User picks budget -->
+          <div class="msg user">
+            <div class="bubble">
+              💳 Mid-range
+              <span class="time">9:42 ✓✓</span>
+            </div>
+          </div>
+
+          <!-- Bot results -->
+          <div class="msg bot">
+            <div class="bubble">
+              🔍 Found <strong>5 nail salons</strong> near you ranked by rating, distance &amp; budget:<br><br>
+
+              <div class="result-card">
+                <div class="salon-name">1. ✨ Vanity Nails &amp; Spa</div>
+                <div class="salon-meta">⭐ 4.8 &nbsp;·&nbsp; 0.3 km &nbsp;·&nbsp; 💳 Mid-range</div>
+                <div class="salon-score">Score: 94/100</div>
+              </div>
+
+              <div class="result-card">
+                <div class="salon-name">2. 💅 LUX Nail Bar</div>
+                <div class="salon-meta">⭐ 4.6 &nbsp;·&nbsp; 0.6 km &nbsp;·&nbsp; 💳 Mid-range</div>
+                <div class="salon-score">Score: 87/100</div>
+              </div>
+
+              <div class="result-card">
+                <div class="salon-name">3. 🌸 Pink Petal Nails</div>
+                <div class="salon-meta">⭐ 4.5 &nbsp;·&nbsp; 1.1 km &nbsp;·&nbsp; 💳 Mid-range</div>
+                <div class="salon-score">Score: 81/100</div>
+              </div>
+
+              <div class="inline-kbd" style="margin-top:10px;">
+                <span class="kbd-btn selected">1️⃣ Vanity Nails</span>
+                <span class="kbd-btn">2️⃣ LUX Bar</span>
+                <span class="kbd-btn">3️⃣ Pink Petal</span>
+                <span class="kbd-btn">🔄 New Search</span>
+              </div>
+              <span class="time">9:42</span>
+            </div>
+          </div>
+
+          <!-- User taps first result -->
+          <div class="msg user">
+            <div class="bubble">
+              1️⃣ Vanity Nails
+              <span class="time">9:43 ✓✓</span>
+            </div>
+          </div>
+
+          <!-- Bot shows details -->
+          <div class="msg bot">
+            <div class="bubble">
+              ✨ <strong>Vanity Nails &amp; Spa</strong><br>
+              ⭐ 4.8 &nbsp;·&nbsp; 312 reviews &nbsp;·&nbsp; 0.3 km away<br>
+              📍 128 W 23rd St, New York<br>
+              📞 (212) 555-0192<br>
+              🕐 Open now · Closes 8:00 PM<br><br>
+              <div class="inline-kbd">
+                <span class="kbd-btn">🗺️ Directions</span>
+                <span class="kbd-btn">📞 Call to Book</span>
+                <span class="kbd-btn">⬅️ Back</span>
+              </div>
+              <span class="time">9:43</span>
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+      <p class="demo-caption">Tap any salon to get directions, call to book, or start a new search.</p>
     </section>
   </div>
 
